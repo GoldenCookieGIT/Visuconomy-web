@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Home from "./components/home";
 import SideBar from "./components/sidebar";
 
 class App extends Component {
@@ -6,10 +7,10 @@ class App extends Component {
     currentlySelected: 0,
     items: [
       { value: "shadow rounded active" },
-      { value: "null" },
-      { value: "null" },
-      { value: "null" },
-      { value: "null" },
+      { value: "" },
+      { value: "" },
+      { value: "" },
+      { value: "" },
     ],
   };
 
@@ -17,6 +18,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <SideBar onSelect={this.handleSelected} selection={this.state} />
+        <Home />
         <main className="container"></main>
       </React.Fragment>
     );
@@ -27,7 +29,7 @@ class App extends Component {
     let items = [...this.state.items];
     let oldSelection = { ...items[this.state.currentlySelected] };
     let newSelection = { ...items[selected] };
-    oldSelection.value = "null";
+    oldSelection.value = "";
     newSelection.value = "shadow rounded active";
     items[this.state.currentlySelected] = oldSelection;
     items[selected] = newSelection;
