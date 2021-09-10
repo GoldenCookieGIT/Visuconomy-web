@@ -1,14 +1,6 @@
 import React from "react";
 
 class SideBar extends React.Component {
-  state = {
-    currentlySelected: 0,
-    items: [
-      { id: 1, value: "shadow rounded active" },
-      { id: 2, value: "null" },
-      { id: 3, value: "null" },
-    ],
-  };
   render() {
     return (
       <React.Fragment>
@@ -43,13 +35,13 @@ class SideBar extends React.Component {
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
             <li
-              onClick={() => this.handleSelected(0)}
+              onClick={() => this.props.onSelect(0)}
               className="nav-item"
               style={{
                 cursor: "pointer",
               }}
             >
-              <a className={"nav-link text-white " + this.state.items[0].value}>
+              <a className={"nav-link text-white " + this.props.selection}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -70,12 +62,12 @@ class SideBar extends React.Component {
             </li>
             <li
               className="nav-item"
-              onClick={() => this.handleSelected(1)}
+              onClick={() => this.props.onSelect(1)}
               style={{
                 cursor: "pointer",
               }}
             >
-              <a className={"nav-link text-white " + this.state.items[1].value}>
+              <a className={"nav-link text-white " + this.props.selection}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -95,12 +87,12 @@ class SideBar extends React.Component {
             </li>
             <li
               className="nav-item"
-              onClick={() => this.handleSelected(2)}
+              onClick={() => this.props.onSelect(2)}
               style={{
                 cursor: "pointer",
               }}
             >
-              <a className={"nav-link text-white " + this.state.items[2].value}>
+              <a className={"nav-link text-white " + this.props.selection}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -145,18 +137,6 @@ class SideBar extends React.Component {
       </React.Fragment>
     );
   }
-
-  handleSelected = (selected) => {
-    let items = [...this.state.items];
-    let oldSelection = { ...items[this.state.currentlySelected] };
-    let newSelection = { ...items[selected] };
-    oldSelection.value = "null";
-    newSelection.value = "shadow rounded active";
-    items[this.state.currentlySelected] = oldSelection;
-    items[selected] = newSelection;
-    this.setState({ items });
-    this.setState({ currentlySelected: selected });
-  };
 }
 
 export default SideBar;
