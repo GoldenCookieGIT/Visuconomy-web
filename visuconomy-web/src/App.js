@@ -5,24 +5,24 @@ class App extends Component {
   state = {
     currentlySelected: 0,
     items: [
-      { value: "null" },
-      { value: "null" },
       { value: "shadow rounded active" },
+      { value: "null" },
+      { value: "null" },
+      { value: "null" },
+      { value: "null" },
     ],
   };
 
   render() {
     return (
       <React.Fragment>
-        <SideBar
-          onSelect={this.handleSelected}
-          selection={"shadow rounded active"}
-        />
+        <SideBar onSelect={this.handleSelected} selection={this.state} />
         <main className="container"></main>
       </React.Fragment>
     );
   }
   handleSelected = (selected) => {
+    if (selected === this.state.currentlySelected) return;
     console.log(selected);
     let items = [...this.state.items];
     let oldSelection = { ...items[this.state.currentlySelected] };
